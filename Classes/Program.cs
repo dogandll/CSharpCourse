@@ -10,37 +10,65 @@ namespace Classes
     {
         static void Main(string[] args)
         {
-            Araba opel = new Araba();
-            opel.Marka = "Opel";
-            opel.Model = "Corsa";
-            opel.Renk = "Kırmızı";
-            opel.Agirlik = 1250;
+            //Kutu kutu1 = new Kutu();
+            //kutu1.En = 10;
+            //kutu1.Derinlik = 10;
+            //kutu1.Boy = 10;
+            //Console.WriteLine(kutu1.Yazdir());
+            //Console.WriteLine(kutu1.Hacim());
 
-            opel.Start();
-            opel.Hizlan();
-            opel.Yavasla();
+            //UrunManager urunManager = new UrunManager();
+            var urunler = UrunManager.UrunleriGetir();
 
+            foreach (var urun in urunler)
+            {
+                Console.WriteLine($"Ürün Adı :{urun.UrunAdi} Fiyat:{urun.Fiyat}");
+            }
+
+
+            Console.ReadKey();
         }
 
-        class Araba
+        public class Kutu
         {
-            public string Marka;
-            public string Model;
-            public string Renk;
-            public int Agirlik;
+            public int En { get; set; }
+            public int Boy { get; set; }
+            public int Derinlik { get; set; }
 
-            public void Start()
+            public string Yazdir()
             {
-                Console.WriteLine("{0} {1} çalıştı", Marka, Model);
+                return string.Format("En {0} Boy {1} Derinlik {2}", En, Boy, Derinlik);
             }
-            public void Hizlan()
+
+            public string Hacim()
             {
-                Console.WriteLine("{0} {1} hızlandı", Marka, Model);
+                return string.Format("Hacim {0}", En * Boy * Derinlik);
             }
-            public void Yavasla()
+        }
+
+        public class Urun
+        {
+            public string UrunAdi { get; set; }
+            public double Fiyat { get; set; }
+        }
+        public class UrunManager
+        {
+            public static List<Urun> UrunleriGetir()
             {
-                Console.WriteLine("{0} {1} yavaşlıyor", Marka, Model);
+                //Veritabanından ürünleri getirir
+
+                List<Urun> urunler = new List<Urun>()
+                {
+                    new Urun{UrunAdi="Samsung s3",Fiyat=1000 },
+                     new Urun{UrunAdi="Samsung s4",Fiyat=2000 },
+                      new Urun{UrunAdi="Samsung s5",Fiyat=3000 },
+                       new Urun{UrunAdi="Samsung s6",Fiyat=4000 },
+                        new Urun{UrunAdi="Iphone 7s",Fiyat=5000 },
+                         new Urun{UrunAdi="Iphone 8",Fiyat=6000 }
+                };
+                return urunler;
             }
+
         }
     }
 }
